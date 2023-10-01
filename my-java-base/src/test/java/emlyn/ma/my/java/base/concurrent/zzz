@@ -1,0 +1,26 @@
+thread  线程
+
+atomic & cas    提供原子操作  保证原子性
+volatile        内存可见性   保证可见性
+
+sync    同步
+    mutex       互斥量
+    condition   条件变量
+    semaphore   信号量
+
+jdk
+    synchronized    互斥
+    wait/notify     条件变量
+
+aqs     同步
+    lock        锁（互斥量）
+    condition   条件变量
+    semaphore   信号量
+    countDownLatch  倒计时器
+    cyclicBarrier   循环栅栏
+    readWriteLock   读写锁
+    futureTask      任务
+    threadPool      线程池
+    forkJoin        分治
+
+同步的本质：一个具有内存可见性的变量，一套针对该变量的原子操作，一个同步队列

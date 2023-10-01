@@ -1,0 +1,56 @@
+{
+  "magic": 12101514,
+  "minor_version": 0,
+  "major_version": 61,
+  "constant_pool_count": 3,
+  "constant_pool": [
+    {
+      "tag": 1,
+      "length": 34,
+      "bytes": "com.crecema.my.java.jvm.ArrivalAnalysis"
+    },
+    {
+      "tag": 3,
+      "bytes": 100
+    },
+    {
+      "tag": 7,
+      "name_index": 2
+    },
+    {
+      "tag": 9,
+      "index1": 22222222,
+      "index2": 22222222
+    }
+  ],
+  "access_flags": 3434,
+  "this_class": 22222222,
+  "super_class": 22222222,
+  "interfaces_count": 2,
+  "interfaces": [22222222,22222222],
+  "fields_count": 1,
+  "fields": [
+    {
+      "access_flags": 22222222,
+      "name_index": 22222222,
+      "descriptor_index": 22222222,
+      "attributes_count": 2,
+      "attribute": {
+        "Code": {},
+        "Exceptions": {}
+      }
+    }
+  ],
+  "methods_count": 1,
+  "methods": [
+    {
+      "access_flags": 22222222,
+      "name_index": 22222222,
+      "descriptor_index": 22222222,
+      "attributes_count": 2,
+      "attribute": {}
+    }
+  ],
+  "attributes_count": 2,
+  "attributes": { }
+}
