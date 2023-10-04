@@ -1,2 +1,2 @@
 # my-java
-Learn Java17
+Learn Java 17
