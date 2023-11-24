@@ -1,6 +1,8 @@
 package com.emlyn.ma.mysql.mybatis;
 
+import com.emlyn.ma.mysql.domain.User;
 import com.emlyn.ma.mysql.mybatis.repository.UserRepository;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class UserRepositoryTests {
@@ -14,7 +16,9 @@ public class UserRepositoryTests {
 
     @Test
     public void testSelectByUid() {
-        System.out.println(userRepository.selectOneByUid(11710121088L));
+        User user = userRepository.selectOneByUid(1710121088L);
+        System.out.println(user);
+        Assertions.assertNotNull(user);
     }
 
 }

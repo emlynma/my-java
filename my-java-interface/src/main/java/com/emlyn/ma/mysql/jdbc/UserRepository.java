@@ -15,7 +15,6 @@ public class UserRepository {
         user.setName(rs.getString("name"));
         user.setEmail(rs.getString("email"));
         user.setPhone(rs.getString("phone"));
-        user.setIdNo(rs.getString("id_no"));
         user.setSex(Sex.valueOf(rs.getInt("sex")));
         user.setAge(rs.getInt("age"));
         user.setStatus(rs.getInt("status"));
@@ -38,7 +37,7 @@ public class UserRepository {
 
     public int insert(User user) {
         String sql = "insert into user values (default, ?, ?, ?, default, default, ?, ?, ?, default, default)";
-        return BaseJdbcUtils.executeUpdate(sql, user.getName(), user.getEmail(), user.getPhone(), user.getIdNo(), user.getSex().getCode(), user.getAge(), JsonUtils.toJson(user.getExtraInfo()));
+        return BaseJdbcUtils.executeUpdate(sql, user.getName(), user.getEmail(), user.getPhone(), user.getSex().getCode(), user.getAge(), JsonUtils.toJson(user.getExtraInfo()));
     }
 
     public int update(User user, User condition) {

@@ -4,6 +4,8 @@ import com.emlyn.ma.mysql.domain.User;
 import com.emlyn.ma.mysql.mybatis.mapper.UserMapper;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import java.util.List;
+
 public class UserRepository {
 
     private final SqlSessionFactory sqlSessionFactory;
@@ -17,7 +19,8 @@ public class UserRepository {
             UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
             User condition = new User();
             condition.setUid(uid);
-            return userMapper.selectOne(condition);
+            List<User> users = userMapper.selectList(condition);
+            return users.isEmpty() ? null : users.get(0);
         }
     }
 

@@ -8,8 +8,6 @@ public interface UserMapper {
 
     User selectById(long id);
 
-    User selectOne(User condition);
-
     List<User> selectList(User condition);
 
     int insert(User user);
