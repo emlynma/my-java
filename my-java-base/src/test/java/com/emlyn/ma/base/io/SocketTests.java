@@ -21,7 +21,7 @@ public class SocketTests {
     @Test
     public void testBIO() throws InterruptedException {
         Runnable serverTask = () -> {
-            ExecutorService executorService = Executors.newFixedThreadPool(5);
+            ExecutorService executorService = Executors.newFixedThreadPool(10);
             try (ServerSocket serverSocket = new ServerSocket(8080)) {
                 System.out.println("server--> server started, listening on port: " + serverSocket.getLocalPort());
                 while (!Thread.currentThread().isInterrupted()) {
@@ -34,14 +34,17 @@ public class SocketTests {
                             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
 
                             String request;
-                            while ((request = reader.readLine()) != null) { // 阻塞等待数据
+                            char[] buffer = new char[1024];
+                            int size;
+                            while ((size = reader.read(buffer)) != -1) { // 阻塞等待数据
+                                request = new String(buffer, 0, size);
                                 if ("Bye".equals(request)) {
-                                    writer.write("Bye"); writer.newLine(); writer.flush();
+                                    writer.write("Bye"); writer.flush();
                                     break;
                                 }
                                 String clientName = request.split(": ")[1];
                                 String response = "hi " + clientName;
-                                writer.write(response); writer.newLine(); writer.flush();
+                                writer.write(response); writer.flush();
                             }
                             socket.close();
                         } catch (Exception e) {
@@ -106,20 +109,25 @@ public class SocketTests {
                             // 读取数据
                             String request;
                             ByteBuffer buffer = ByteBuffer.allocate(1024);
-                            int size;
-                            while ((size = socketChannel.read(buffer)) > 0) {
-                                assert true;
-                            }
-                            if (size == -1) {
+                            if (socketChannel.read(buffer) == -1) {
                                 socketChannel.close();
                             } else {
                                 buffer.flip(); // 切换到读模式
                                 request = new String(buffer.array(), 0, buffer.remaining());
-                                // 响应数据
-                                String response = "hi " + request;
                                 buffer.clear(); // 切换到写模式
-                                buffer.put(response.getBytes());
-                                socketChannel.write(buffer);
+                                // 响应数据
+                                if ("Bye".equals(request)) {
+                                    String response = "Bye";
+                                    buffer.put(response.getBytes());
+                                    buffer.flip(); // 切换到读模式
+                                    socketChannel.write(buffer);
+                                    socketChannel.close();
+                                } else {
+                                    String response = "Hi " + request.split(": ")[1];;
+                                    buffer.put(response.getBytes());
+                                    buffer.flip(); // 切换到读模式
+                                    socketChannel.write(buffer);
+                                }
                             }
                         } else if (key.isWritable()) {
                             System.out.println("server--> writable");
@@ -167,22 +175,32 @@ public class SocketTests {
                 // 发送消息给服务器
                 String request = "Hello, I'm client: " + localHost + ":" + localPort;
                 writer.write(request);
-                writer.newLine();
                 writer.flush();
                 System.out.println("client--> request: " + request);
                 // 读取服务器的响应
-                String response = reader.readLine();
-                System.out.println("client--> response: " + response);
+                String response;
+                char[] buffer = new char[1024];
+                int size;
+                if ((size = reader.read(buffer)) == -1) {
+                    socket.close();
+                } else {
+                    response = new String(buffer, 0, size);
+                    System.out.println("client--> response: " + response);
+                }
 
                 ConcurrentUtils.sleep(500);
 
                 request = "Bye";
                 writer.write(request);
-                writer.newLine();
                 writer.flush();
                 System.out.println("client--> request: " + request);
-                response = reader.readLine();
-                System.out.println("client--> response: " + response);
+                buffer = new char[1024];
+                if ((size = reader.read(buffer)) == -1) {
+                    socket.close();
+                } else {
+                    response = new String(buffer, 0, size);
+                    System.out.println("client--> response: " + response);
+                }
 
                 socket.close();
             } catch (IOException e) {
