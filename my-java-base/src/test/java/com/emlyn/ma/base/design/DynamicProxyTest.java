@@ -1,4 +1,4 @@
-package com.emlyn.ma.base.design.proxy;
+package com.emlyn.ma.base.design;
 
 import org.junit.jupiter.api.Test;
 

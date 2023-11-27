@@ -5,6 +5,27 @@ import org.junit.jupiter.api.Test;
 
 import java.io.*;
 
+/**
+ * Closeable
+ * InputStream
+ *     FileInputStream          // 从文件中读取字节流
+ *     PipedInputStream         // 从管道中读取字节流
+ *     ByteArrayInputStream     // 从字节数组中读取字节流
+ *     ObjectInputStream        // 从对象中读取字节流
+ *     FilterInputStream        // 从其他流中读取字节流
+ *         BufferedInputStream
+ *         DataInputStream
+ *
+ *  OutputStream
+ *      FileOutputStream         // 向文件中写入字节流
+ *      PipedOutputStream        // 向管道中写入字节流
+ *      ByteArrayOutputStream    // 向字节数组中写入字节流
+ *      ObjectOutputStream       // 向对象中写入字节流
+ *      FilterOutputStream       // 向其他流中写入字节流
+ *          BufferedOutputStream
+ *          DataOutputStream
+ *          PrintStream
+ */
 public class InputStreamTest {
 
     @Test

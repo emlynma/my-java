@@ -5,6 +5,27 @@ import org.junit.jupiter.api.Test;
 
 import java.io.*;
 
+/**
+ * Closeable
+ * Readable
+ * Reader
+ *     FileReader           // 从文件中读取字符流
+ *     PipedReader          // 从管道中读取字符流
+ *     CharArrayReader      // 从字符数组中读取字符流
+ *     StringReader         // 从字符串中读取字符流
+ *     InputStreamReader    // 从字节流中读取字符流
+ *     FilterReader         // 从其他流中读取字符流
+ *     BufferedReader       // 从其他流中读取字符流
+ *
+ * Writer
+ *     FileWriter           // 向文件中写入字符流
+ *     PipedWriter          // 向管道中写入字符流
+ *     CharArrayWriter      // 向字符数组中写入字符流
+ *     StringWriter         // 向字符串中写入字符流
+ *     OutputStreamWriter   // 向字节流中写入字符流
+ *     FilterWriter         // 向其他流中写入字符流
+ *     BufferedWriter       // 向其他流中写入字符流
+ */
 public class ReaderTest {
 
     @Test

@@ -1,4 +1,4 @@
-package com.emlyn.ma.base.design.spi;
+package com.emlyn.ma.base.design;
 
 import org.junit.jupiter.api.Test;
 
