@@ -39,6 +39,10 @@ public class MergeSort {
         }
     }
 
+    // 算法改进
+    // 1. 对小规模数组使用插入排序
+    // 2. merge前判断是否已经有序以避免无谓merge
+
     public static void main(String[] args) {
         SortTest.test(MergeSort::sort);
     }
