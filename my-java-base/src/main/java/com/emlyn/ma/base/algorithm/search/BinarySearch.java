@@ -1,4 +1,4 @@
-package com.emlyn.ma.base.algorithm;
+package com.emlyn.ma.base.algorithm.search;
 
 import com.emlyn.ma.base.util.AlgorithmUtils;
 
