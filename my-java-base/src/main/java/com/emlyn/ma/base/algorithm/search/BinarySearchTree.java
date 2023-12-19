@@ -8,12 +8,21 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
         return size(root);
     }
 
-    public Object get(Key key) {
-        return get(root, key);
+    public Value get(Key key) {
+        Node node = get(root, key);
+        return node == null ? null : node.value;
     }
 
     public void put(Key key, Value value) {
         root = put(root, key, value);
+    }
+
+    public Key min() {
+        return min(root).key;
+    }
+
+    public Key max() {
+        return max(root).key;
     }
 
     private class Node {
@@ -35,13 +44,13 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
         return node.size;
     }
 
-    private Value get(Node node, Key key) {
+    private Node get(Node node, Key key) {
         if (node == null) {
             return null;
         }
         int cmp = key.compareTo(node.key);
         if (cmp == 0) {
-            return node.value;
+            return node;
         } else if (cmp < 0) {
             return get(node.left, key);
         } else {
@@ -63,6 +72,20 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
         }
         node.size = size(node.left) + size(node.right) + 1;
         return node;
+    }
+
+    private Node min(Node node) {
+        if (node.left == null) {
+            return node;
+        }
+        return min(node.left);
+    }
+
+    private Node max(Node node) {
+        if (node.right == null) {
+            return node;
+        }
+        return min(node.right);
     }
 
     public static void main(String[] args) {
