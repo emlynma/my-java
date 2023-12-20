@@ -25,6 +25,10 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
         return max(root).key;
     }
 
+    public Key select(int i) {
+        return select(root, i).key;
+    }
+
     private class Node {
         private final Key key;
         private Value value;
@@ -86,6 +90,20 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
             return node;
         }
         return min(node.right);
+    }
+
+    private Node select(Node node, int i) {
+        if (node == null) {
+            return null;
+        }
+        int t = size(node.left);
+        if (i < t) {
+            return select(node.left, i);
+        } else if (i > t) {
+            return select(node.right, i - t - 1);
+        } else {
+            return node;
+        }
     }
 
     public static void main(String[] args) {
