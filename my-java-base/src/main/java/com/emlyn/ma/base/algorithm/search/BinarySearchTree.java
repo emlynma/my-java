@@ -106,14 +106,4 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
         }
     }
 
-    public static void main(String[] args) {
-        BinarySearchTree<Integer, String> bst = new BinarySearchTree<>();
-        bst.put(1, "a");
-        bst.put(2, "b");
-        bst.put(7, "c");
-        bst.put(5, "d");
-        bst.put(4, "e");
-        bst.put(3, "f");
-    }
-
 }
