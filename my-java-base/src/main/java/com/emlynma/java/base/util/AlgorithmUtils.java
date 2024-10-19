@@ -1,5 +1,7 @@
 package com.emlynma.java.base.util;
 
+import java.util.Arrays;
+
 public abstract class AlgorithmUtils {
 
     public static int[] generateSortedIntArray(int count, boolean asc) {
@@ -37,6 +39,12 @@ public abstract class AlgorithmUtils {
                 array[i] = array[i - 2];
             }
         }
+        return array;
+    }
+
+    public static int[] generateDuplicateIntArray(int count) {
+        int [] array = new int[count];
+        Arrays.fill(array, 1000);
         return array;
     }
 
