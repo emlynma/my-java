@@ -1,4 +1,4 @@
 package com.emlynma.java.base.algorithm.search;
 
-public class BinarySearchTree {
+public class ArrayDictionary {
 }
