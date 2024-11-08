@@ -10,6 +10,7 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>my-java-algo</module>
         <module>my-java-base</module>
         <module>my-java-common</module>
         <module>my-java-interface</module>
