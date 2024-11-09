@@ -1,5 +1,7 @@
 package com.emlynma.java.algo.sort;
 
+import java.util.Arrays;
+
 public abstract class SorterUtils {
 
     public static int[] createRandomIntArray(int count) {
@@ -37,6 +39,12 @@ public abstract class SorterUtils {
                 array[i] = array[i - 2];
             }
         }
+        return array;
+    }
+
+    public static int[] createSameIntArray(int count) {
+        var array = new int[count];
+        Arrays.fill(array, 100);
         return array;
     }
 
