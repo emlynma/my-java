@@ -25,7 +25,16 @@ public class SorterTest {
     public static void main(String[] args) {
         var executor = Executors.newFixedThreadPool(40);
         var sorterList = List.of(
-                new SelectSorter()
+                new SelectSorter(),
+                new BubbleSorter(),
+                new InsertSorter(),
+                new ShellSorter(),
+                new MergeSorter(),
+                new QuickSorter(),
+                new HeapSorter(),
+                new CountSorter(),
+                new RadixSorter(),
+                new BucketSorter()
         );
         var futureList = new ArrayList<Future<SortResult>>();
         for (var sorter : sorterList) {
