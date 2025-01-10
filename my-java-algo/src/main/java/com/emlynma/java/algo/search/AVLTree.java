@@ -2,6 +2,8 @@ package com.emlynma.java.algo.search;
 
 public class AVLTree<Key extends Comparable<Key>, Value> {
 
+    private Node root;
+
     private class Node {
         private Key key;
         private Value value;
@@ -85,7 +87,7 @@ public class AVLTree<Key extends Comparable<Key>, Value> {
     }
 
     public void put_recursion(Key key, Value value) {
-
+        root = put_recursion_core(root, key, value);
     }
     private Node put_recursion_core(Node node, Key key, Value value) {
         // 递归出口
