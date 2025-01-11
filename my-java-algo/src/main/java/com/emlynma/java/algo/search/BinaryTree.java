@@ -1,4 +1,4 @@
-package com.emlynma.java.algo.search.tree;
+package com.emlynma.java.algo.search;
 
 import java.util.List;
 

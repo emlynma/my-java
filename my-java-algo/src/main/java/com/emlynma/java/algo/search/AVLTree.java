@@ -1,43 +1,125 @@
 package com.emlynma.java.algo.search;
 
-public class AVLTree<Key extends Comparable<Key>, Value> {
+import java.util.List;
 
-    private Node root;
+public class AVLTree<Key extends Comparable<Key>, Value> implements BinaryTree<Key, Value> {
 
     private class Node {
-        private Key key;
-        private Value value;
-        private Node left;
-        private Node right;
-        private int height;
+        Key key;
+        Value value;
+        Node left, right;
+        int height;
         public Node(Key key, Value value) {
             this.key = key;
             this.value = value;
-            height = 0;
+            this.height = 0;
         }
     }
 
-    // 获取节点的高度
+    private Node root;
+
+    @Override
+    public List<Value> list() {
+        // 参考二叉搜索树
+        return null;
+    }
+
+    @Override
+    public Value get(Key key) {
+        // 参考二叉搜索树
+        return null;
+    }
+
+    @Override
+    public void put(Key key, Value value) {
+        root = put(root, key, value);
+    }
+
+    @Override
+    public void del(Key key) {
+        root = del(root, key);
+    }
+
+    // 添加
+    private Node put(Node node, Key key, Value value) {
+        if (node == null) {
+            return new Node(key, value);
+        }
+        int cmp = key.compareTo(node.key);
+        if (cmp == 0) {
+            node.value = value;
+            return node;
+        }
+        if (cmp < 0) {
+            node.left = put(node.left, key, value);
+        } else {
+            node.right = put(node.right, key, value);
+        }
+        // AVL 特殊操作
+        {
+            // 更新高度
+            updateHeight(node);
+            // 旋转
+            node = rotate(node);
+        }
+        return node;
+    }
+
+    // 删除
+    private Node del(Node node, Key key) {
+        if (node == null) {
+            return null;
+        }
+        int cmp = key.compareTo(node.key);
+        if (cmp == 0) {
+            if (node.left == null) {
+                return node.right;
+            }
+            if (node.right == null) {
+                return node.left;
+            }
+            // 如果待删除节点有两个子节点，返回右节点的最小节点
+            Node child = node.right;
+            while (child.left != null) {
+                child = child.left;
+            }
+            child = del(child, key);
+            child.left = node.left;
+            child.right = node.right;
+            return child;
+        }
+        if (cmp < 0) {
+            node.left = del(node.left, key);
+        } else {
+            node.right = del(node.right, key);
+        }
+        // AVL 特殊操作
+        {
+            updateHeight(node);
+            node = rotate(node);
+        }
+        return node;
+    }
+
+    // AVL 辅助函数
+    // 节点高度
     private int height(Node node) {
         if (node == null) {
             return -1;
         }
         return node.height;
     }
-
-    // 更新节点的高度
+    // 更新高度
     private void updateHeight(Node node) {
-        node.height = Math.max(height(node.left), height(node.right)) + 1;
+        node.height = 1 + Math.max(height(node.left), height(node.right));
     }
-
-    // 获取节点的平衡因子
+    // 节点平衡因子
     private int balanceFactor(Node node) {
         if (node == null) {
             return 0;
         }
         return height(node.left) - height(node.right);
     }
-
     // 左旋转
     private Node leftRotate(Node node) {
         Node child = node.right;
@@ -47,7 +129,6 @@ public class AVLTree<Key extends Comparable<Key>, Value> {
         updateHeight(child);
         return child;
     }
-
     // 右旋转
     private Node rightRotate(Node node) {
         Node child = node.left;
@@ -57,57 +138,31 @@ public class AVLTree<Key extends Comparable<Key>, Value> {
         updateHeight(child);
         return child;
     }
-
+    // 旋转
     private Node rotate(Node node) {
         int balanceFactor = balanceFactor(node);
-        // 左偏树
-        if (balanceFactor > 1) {
-            if (balanceFactor(node.left) >= 0) {
-                // 右旋转
-                return rightRotate(node);
-            } else {
-                // 先左旋转再右旋转
-                node.left = leftRotate(node.left);
-                return rightRotate(node);
-            }
-        }
-        // 右偏树
+        // 右偏树，需要左旋
         if (balanceFactor < -1) {
             if (balanceFactor(node.right) <= 0) {
-                // 左旋转
+                // 左旋
                 return leftRotate(node);
             } else {
-                // 先右旋转再左旋转
+                // 先右旋，再左旋
                 node.right = rightRotate(node.right);
                 return leftRotate(node);
             }
         }
-        // 平衡树，无须旋转，直接返回
+        // 左偏树，需要右旋
+        if (balanceFactor > 1) {
+            if (balanceFactor(node.left) >= 0) {
+                // 右旋
+                return rightRotate(node);
+            } else {
+                // 先左旋，再右旋
+                node.left = leftRotate(node.left);
+                return rightRotate(node);
+            }
+        }
         return node;
     }
-
-    public void put_recursion(Key key, Value value) {
-        root = put_recursion_core(root, key, value);
-    }
-    private Node put_recursion_core(Node node, Key key, Value value) {
-        // 递归出口
-        if (node == null) {
-            return new Node(key, value);
-        }
-        int cmp = node.key.compareTo(key);
-        if (cmp == 0) {
-            node.value = value;
-            return node;
-        }
-        if (cmp > 0) {
-            node.left = put_recursion_core(node.left, key, value);
-        } else {
-            node.right = put_recursion_core(node.right, key, value);
-        }
-        // 更新高度
-        updateHeight(node);
-        // 旋转
-        return rotate(node);
-    }
-
 }
