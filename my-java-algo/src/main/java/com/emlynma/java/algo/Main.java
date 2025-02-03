@@ -1,10 +1,9 @@
 package com.emlynma.java.algo;
 
-import java.util.HashMap;
-
 class Solution {
-    public String pathEncryption(String path) {
-        HashMap<Character, Character> map = new HashMap<>();
+
+    public static void main(String[] args) {
+        System.out.println("Hello Algo");
     }
 
 }
