@@ -10,16 +10,21 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>my-java-base</artifactId>
+    <artifactId>my-java-case</artifactId>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>my-java-mysql</module>
+        <module>my-java-redis</module>
+        <module>my-java-kafka</module>
+        <module>my-java-rpc</module>
+    </modules>
 
     <dependencies>
         <dependency>
-            <groupId>redis.clients</groupId>
-            <artifactId>jedis</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.uuid</groupId>
-            <artifactId>java-uuid-generator</artifactId>
+            <groupId>com.emlynma</groupId>
+            <artifactId>my-java-base</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
