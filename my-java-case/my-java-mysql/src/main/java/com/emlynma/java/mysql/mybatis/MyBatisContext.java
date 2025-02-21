@@ -12,7 +12,7 @@ public class MyBatisContext {
 
     private final SqlSessionFactory sqlSessionFactory;
 
-    public MyBatisContext() {
+    private MyBatisContext() {
         try {
             sqlSessionFactory = new SqlSessionFactoryBuilder()
                     .build(Resources.getResourceAsStream("mybatis-config.xml"));

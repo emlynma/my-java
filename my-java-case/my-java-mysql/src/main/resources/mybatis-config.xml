@@ -12,7 +12,7 @@
     </settings>
 
     <typeHandlers>
-        <package name="com.emlyn.ma.mysql.mybatis.type"/>
+        <package name="com.emlynma.java.mysql.mybatis.type"/>
     </typeHandlers>
 
     <environments default="development">
@@ -28,7 +28,7 @@
     </environments>
 
     <mappers>
-        <package name="com.emlyn.ma.mysql.mybatis.mapper"/>
+        <package name="com.emlynma.java.mysql.mybatis.mapper"/>
     </mappers>
 
 </configuration>

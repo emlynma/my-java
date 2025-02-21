@@ -1,6 +1,6 @@
 package com.emlynma.java.mysql.mybatis.type;
 
-import com.emlynma.java.common.json.JsonUtils;
+import com.emlynma.java.base.json.JsonUtils;
 import com.emlynma.java.mysql.domain.User;
 import org.apache.ibatis.type.JdbcType;
 import org.apache.ibatis.type.MappedTypes;

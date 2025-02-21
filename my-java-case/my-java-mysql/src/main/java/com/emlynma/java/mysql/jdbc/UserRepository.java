@@ -1,6 +1,6 @@
 package com.emlynma.java.mysql.jdbc;
 
-import com.emlynma.java.common.json.JsonUtils;
+import com.emlynma.java.base.json.JsonUtils;
 import com.emlynma.java.mysql.domain.Sex;
 import com.emlynma.java.mysql.domain.User;
 
