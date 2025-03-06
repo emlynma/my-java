@@ -1,6 +1,6 @@
 package com.emlynma.java.redis.jedis;
 
-import com.emlynma.java.jedis.JedisUtils;
+import com.emlynma.java.redis.JedisUtils;
 import org.junit.jupiter.api.Test;
 
 public class JedisUtilsTests {
@@ -8,7 +8,7 @@ public class JedisUtilsTests {
     @Test
     void testGet() {
         JedisUtils.set("hello", "world");
-        JedisUtils.set("hello", "world", 10);
+        JedisUtils.set("hello", "world");
         System.out.println(JedisUtils.get("hello"));
     }
 
