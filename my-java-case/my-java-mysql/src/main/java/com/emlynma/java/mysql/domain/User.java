@@ -11,11 +11,12 @@ public class User {
 
     private Long id;
     private Long uid;
-    private String name;
-    private String email;
+    private String uname;
     private String phone;
+    private String email;
+    private String avatar;
+    private Date birthday;
     private Sex sex;
-    private Integer age;
     private Integer status;
     private ExtraInfo extraInfo;
     private Date createTime;

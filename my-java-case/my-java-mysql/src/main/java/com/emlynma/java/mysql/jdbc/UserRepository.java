@@ -12,11 +12,12 @@ public class UserRepository {
         User user = new User();
         user.setId(rs.getLong("id"));
         user.setUid(rs.getLong("uid"));
-        user.setName(rs.getString("name"));
-        user.setEmail(rs.getString("email"));
+        user.setUname(rs.getString("uname"));
         user.setPhone(rs.getString("phone"));
+        user.setEmail(rs.getString("email"));
+        user.setAvatar(rs.getString("avatar"));
+        user.setBirthday(rs.getDate("birthday"));
         user.setSex(Sex.valueOf(rs.getInt("sex")));
-        user.setAge(rs.getInt("age"));
         user.setStatus(rs.getInt("status"));
         user.setCreateTime(rs.getTimestamp("create_time"));
         user.setUpdateTime(rs.getTimestamp("update_time"));
@@ -36,8 +37,8 @@ public class UserRepository {
     }
 
     public int insert(User user) {
-        String sql = "insert into user values (default, ?, ?, ?, default, default, ?, ?, ?, default, default)";
-        return BaseJdbcUtils.executeUpdate(sql, user.getName(), user.getEmail(), user.getPhone(), user.getSex().getCode(), user.getAge(), JsonUtils.toJson(user.getExtraInfo()));
+        String sql = "insert into user values (default, ?, ?, ?, default, default, default, ?, ?, default, default)";
+        return BaseJdbcUtils.executeUpdate(sql, user.getUid(), user.getUname(), user.getPhone(), user.getSex().getCode(), JsonUtils.toJson(user.getExtraInfo()));
     }
 
     public int update(User user, User condition) {
